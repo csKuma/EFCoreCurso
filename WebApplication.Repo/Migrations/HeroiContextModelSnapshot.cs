@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication1.Data;
+using WebApplication2.Repo;
 
-namespace WebApplication2.Migrations
+namespace WebApplication.Repo.Migrations
 {
     [DbContext(typeof(HeroiContext))]
-    [Migration("20211124001553_Initial")]
-    partial class Initial
+    partial class HeroiContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +19,7 @@ namespace WebApplication2.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebApplication1.Model.Arma", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.Arma", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +39,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("Armas");
                 });
 
-            modelBuilder.Entity("WebApplication1.Model.Batalha", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.Batalha", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +63,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("Batalhas");
                 });
 
-            modelBuilder.Entity("WebApplication1.Model.Heroi", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.Heroi", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -83,7 +81,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("Herois");
                 });
 
-            modelBuilder.Entity("WebApplication2.Model.HeroiBatalha", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.HeroiBatalha", b =>
                 {
                     b.Property<int>("BatalhaId")
                         .HasColumnType("int");
@@ -98,7 +96,7 @@ namespace WebApplication2.Migrations
                     b.ToTable("HeroisBatalhas");
                 });
 
-            modelBuilder.Entity("WebApplication2.Model.IdentidadeSecreta", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.IdentidadeSecreta", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -119,9 +117,9 @@ namespace WebApplication2.Migrations
                     b.ToTable("IdentidadesSecretas");
                 });
 
-            modelBuilder.Entity("WebApplication1.Model.Arma", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.Arma", b =>
                 {
-                    b.HasOne("WebApplication1.Model.Heroi", "Heroi")
+                    b.HasOne("WebApplication2.Dominio.Heroi", "Heroi")
                         .WithMany("Armas")
                         .HasForeignKey("HeroiId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -130,15 +128,15 @@ namespace WebApplication2.Migrations
                     b.Navigation("Heroi");
                 });
 
-            modelBuilder.Entity("WebApplication2.Model.HeroiBatalha", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.HeroiBatalha", b =>
                 {
-                    b.HasOne("WebApplication1.Model.Batalha", "Batalha")
+                    b.HasOne("WebApplication2.Dominio.Batalha", "Batalha")
                         .WithMany("HeroisBatalhas")
                         .HasForeignKey("BatalhaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Model.Heroi", "Heroi")
+                    b.HasOne("WebApplication2.Dominio.Heroi", "Heroi")
                         .WithMany("HeroisBatalhas")
                         .HasForeignKey("HeroiId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -149,23 +147,23 @@ namespace WebApplication2.Migrations
                     b.Navigation("Heroi");
                 });
 
-            modelBuilder.Entity("WebApplication2.Model.IdentidadeSecreta", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.IdentidadeSecreta", b =>
                 {
-                    b.HasOne("WebApplication1.Model.Heroi", "Heroi")
+                    b.HasOne("WebApplication2.Dominio.Heroi", "Heroi")
                         .WithOne("Identidade")
-                        .HasForeignKey("WebApplication2.Model.IdentidadeSecreta", "HeroiId")
+                        .HasForeignKey("WebApplication2.Dominio.IdentidadeSecreta", "HeroiId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Heroi");
                 });
 
-            modelBuilder.Entity("WebApplication1.Model.Batalha", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.Batalha", b =>
                 {
                     b.Navigation("HeroisBatalhas");
                 });
 
-            modelBuilder.Entity("WebApplication1.Model.Heroi", b =>
+            modelBuilder.Entity("WebApplication2.Dominio.Heroi", b =>
                 {
                     b.Navigation("Armas");
 

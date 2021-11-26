@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApplication1.Model;
-using WebApplication2.Model;
+using WebApplication2.Dominio;
 
-namespace WebApplication1.Data
+namespace WebApplication2.Repo
 {
     public class HeroiContext: DbContext
     {
@@ -13,10 +12,8 @@ namespace WebApplication1.Data
         public DbSet<HeroiBatalha> HeroisBatalhas{ get; set; }
         public DbSet<IdentidadeSecreta> IdentidadesSecretas { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Password=kuma1234;Persist Security Info=True;User ID=sa;Initial Catalog=HeroApp;Data Source=KUMA\XPTO");
-        }
+        public HeroiContext(DbContextOptions<HeroiContext> options) : base(options) { }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<HeroiBatalha>(entity => {

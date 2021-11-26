@@ -1,8 +1,9 @@
-﻿namespace WebApplication1.Model
+﻿ namespace WebApplication2.Dominio
+
 {
     public class Arma
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public Heroi Heroi { get; set; } // relacionamento de 1 pra muitos 
         public int HeroiId { get; set; }

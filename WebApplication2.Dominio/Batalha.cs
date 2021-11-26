@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using WebApplication2.Model;
 
-namespace WebApplication1.Model
+
+namespace WebApplication2.Dominio
 {
     public class Batalha
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Descrição { get; set; }
         public  DateTime DtInicio { get; set; }

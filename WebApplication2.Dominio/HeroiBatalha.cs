@@ -1,6 +1,6 @@
-﻿using WebApplication1.Model;
+﻿
 
-namespace WebApplication2.Model
+namespace WebApplication2.Dominio
 {
     public class HeroiBatalha
     {
