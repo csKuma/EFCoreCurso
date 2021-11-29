@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApplication.Repo;
 using WebApplication2.Repo;
 
 namespace WebApplication2
@@ -31,7 +32,13 @@ namespace WebApplication2
                 option.UseSqlServer(Configuration.GetConnectionString("ConnectionServer"));
             });
 
+            services.AddScoped<IEFcoreRepository, EFcoreRepository >();
             services.AddControllers();
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                    );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
